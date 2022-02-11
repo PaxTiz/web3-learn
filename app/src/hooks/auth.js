@@ -1,16 +1,16 @@
-import { readonly, ref } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 export default () => {
     const store = useStore()
-    const isAuth = ref(() => store.getters["user/isAuth"])
-    const isError = ref(() => store.getters["user/isError"])
-    const address = ref(() => store.getters["user/address"])
-    const error = ref(() => store.getters["user/error"])
+    const isAuth = computed(() => store.getters["user/isAuth"])
+    const isError = computed(() => store.getters["user/isError"])
+    const address = computed(() => store.getters["user/address"])
+    const error = computed(() => store.getters["user/error"])
     return {
-        isAuth: readonly(isAuth),
-        isError: readonly(isError),
-        address: readonly(address),
-        error: readonly(error)
+        isAuth,
+        isError,
+        address,
+        error
     }
 }

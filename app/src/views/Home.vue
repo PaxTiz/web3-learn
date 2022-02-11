@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <h1 v-if="auth.isError">{{ auth.error }}</h1>
-    <h1 v-else-if="auth.isAuth">{{ auth.address }}</h1>
+    <h1 v-if="auth.isError.value">{{ auth.error.value }}</h1>
+    <h1 v-else-if="auth.isAuth.value">{{ auth.address.value }}</h1>
     <h1 v-else>
       <button @click="loginWithMetamask">Connect with Metamask</button>
     </h1>
