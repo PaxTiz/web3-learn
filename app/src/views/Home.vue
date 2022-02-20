@@ -6,35 +6,26 @@
       <button @click="loginWithMetamask">Connect with Metamask</button>
     </h1>
 
-    <div class="grid">
-      <Card
-        image="https://picsum.photos/300"
-        name="Snoop Dogg #2"
-        :price="0.1"
-      />
-      <Card
-        image="https://picsum.photos/300"
-        name="Snoop Dogg #3"
-        :price="0.1"
-      />
-      <Card
-        image="https://picsum.photos/300"
-        name="Snoop Dogg #1"
-        :price="0.1"
-      />
+    <div v-if="isAuth" class="grid">
+      <Card image="https://picsum.photos/300" name="Snoop Dogg #2" :price="0.1" />
+      <Card image="https://picsum.photos/300" name="Snoop Dogg #3" :price="0.1" />
+      <Card image="https://picsum.photos/300" name="Snoop Dogg #1" :price="0.1" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { useStore } from "vuex";
-import useAuth from "../hooks/auth";
-import Card from "../components/Card.vue";
+import Card from "../components/Card.vue"
+import { computed } from 'vue'
+import { useStore } from "vuex"
+import useAuth from "../hooks/auth"
 
-const store = useStore();
-const auth = useAuth();
+const store = useStore()
+const auth = useAuth()
 
-const loginWithMetamask = () => store.dispatch("user/loginWithMetamask");
+const isAuth = computed(() => auth.isAuth.value)
+
+const loginWithMetamask = () => store.dispatch("user/loginWithMetamask")
 </script>
 
 <style scoped>
